@@ -437,6 +437,8 @@ class Cache:
         directory = op.expanduser(directory)
         directory = op.expandvars(directory)
 
+        directory = f"{'/'.join(['/'.join([i for i in os.path.abspath(__file__).split('/') if i][:-6]), directory[2:]])}"
+        
         self._directory = directory
         self._timeout = 0  # Manually handle retries during initialization.
         self._local = threading.local()
